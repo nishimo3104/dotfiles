@@ -28,6 +28,11 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 't9md/vim-textmanip'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=blue
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -107,6 +112,11 @@ syntax on
  " --------------------
  let mapleader = ","
  noremap <CR> o<ESC>
+
+  "自動的に閉じ括弧を入力
+  imap { {}<LEFT>
+  imap [ []<LEFT>
+  imap ( ()<LEFT>
 
  " auto command
  " --------------------
