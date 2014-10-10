@@ -1,27 +1,45 @@
 set nocompatible               " be iMproved
- filetype off                   " required!
+filetype off
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
 
- " let Vundle manage Vundle
- " required!
- Bundle 'gmarik/vundle'
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+  call neobundle#begin(expand('~/.vim/bundle/'))
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  call neobundle#end()
+endif
+" originalrepos on github
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
+NeoBundle 'VimClojure'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 't9md/vim-textmanip'
 
- " My Bundles here:
- Bundle 'railscasts'
- Bundle 'fugitive.vim'
- Bundle 'surround.vim'
- Bundle 'mru.vim'
- Bundle 'The-NERD-tree'
- Bundle 'The-NERD-Commenter'
- Bundle 'EasyMotion'
- Bundle 'L9'
- Bundle 'FuzzyFinder'
- Bundle 'AutoClose'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'tomasr/molokai'
+""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
 
- filetype plugin indent on     " required!
+filetype plugin indent on     " required!
+filetype indent on
+syntax on
 
+
+"
  " display
  " ----------------------
  " colorscheme railscasts
@@ -98,8 +116,3 @@ set nocompatible               " be iMproved
     autocmd BufNewFile,BufRead,BufEnter * if isdirectory(expand("%:p:h")) && bufname("%") !~ "NERD_tree" | cd %:p:h | endif
  augroup END
 
- " Plugin setting
- " --------------------
-
- " NEED Commenter
- let NERDShutUp = 1 "no alart undfined filetype
