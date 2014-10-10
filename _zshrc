@@ -1,0 +1,49 @@
+autoload -U compinit
+compinit
+
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/share:$PATH
+export PATH=/usr/local/share:$PATH
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+
+## Environment variable configuration
+#
+# LANG
+#
+export LANG=ja_JP.UTF-8
+
+## Default shell configuration
+autoload -Uz colors
+colors
+
+#
+#
+# set prompt
+#
+case ${UID} in
+0)
+    PROMPT="%B%{[31m%}%/#%{[m%}%b "
+    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
+    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    ;;
+*)
+    PROMPT="%{[31m%}%/%%%{[m%} "
+    PROMPT2="%{[31m%}%_%%%{[m%} "
+    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&         PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    ;;
+esac
+
+# set terminal title including current directory
+#
+case "${TERM}" in
+kterm*|xterm)
+    precmd() {
+        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+    }
+    ;;
+esac
