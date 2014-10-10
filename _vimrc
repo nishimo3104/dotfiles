@@ -19,10 +19,6 @@ set nocompatible               " be iMproved
  Bundle 'L9'
  Bundle 'FuzzyFinder'
  Bundle 'AutoClose'
- " Ruby/Rails
- Bundle 'vim-ruby/vim-ruby'
- Bundle 'tpope/vim-rails'
- Bundle 'snipMate'
 
  filetype plugin indent on     " required!
 
@@ -107,7 +103,3 @@ set nocompatible               " be iMproved
 
  " NEED Commenter
  let NERDShutUp = 1 "no alart undfined filetype
-
- " rails.vim
- let g:rails_level=3
-
